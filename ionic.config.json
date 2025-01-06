@@ -1,0 +1,7 @@
+{
+  "name": "ionic-refresh-bug",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
