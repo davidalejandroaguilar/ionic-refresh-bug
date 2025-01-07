@@ -83,33 +83,33 @@ const Tab1: React.FC = () => {
               ) : (
                 places?.map((place) => (
                   <IonCard key={place.id}>
-                    <Swiper
-                      modules={[Pagination]}
-                      pagination={{
-                        clickable: true,
-                      }}
-                    >
-                      {place.photos?.map((photo: any, index: any) => (
-                        <SwiperSlide key={index}>
-                          <IonImg
-                            src={getPhotoUrl(photo.name)}
-                            alt={`${place.displayName.text} photo ${index + 1}`}
-                            style={{
-                              aspectRatio: "16/9",
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              borderRadius: "8px",
-                            }}
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
+                    {[0].map((photo: any, index: any) => (
+                      <IonImg
+                        key={index}
+                        src={getPhotoUrl(photo.name)}
+                        alt={`${place.displayName.text} photo ${index + 1}`}
+                        style={{
+                          aspectRatio: "4/4",
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          borderRadius: "8px",
+                        }}
+                      />
+                    ))}
 
                     <IonCardHeader>
                       <IonCardTitle>{place.displayName.text}</IonCardTitle>
                     </IonCardHeader>
                     <IonCardContent>
+                      {place.editorialSummary && (
+                        <p>{place.editorialSummary.text}</p>
+                      )}
+
+                      {place.editorialSummary && (
+                        <p>{place.editorialSummary.text}</p>
+                      )}
+
                       {place.editorialSummary && (
                         <p>{place.editorialSummary.text}</p>
                       )}
