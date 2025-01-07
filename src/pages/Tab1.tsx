@@ -56,36 +56,40 @@ const Tab1: React.FC = () => {
 
   return (
     <IonPage>
-      <IonSegmentView>
-        <IonSegmentContent id="list">
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Nearby Places</IonTitle>
-            </IonToolbar>
-          </IonHeader>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Nearby Places</IonTitle>
+        </IonToolbar>
+      </IonHeader>
 
-          <IonContent className="ion-padding-bottom">
-            <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
-              <IonRefresherContent />
-            </IonRefresher>
+      <IonContent className="ion-padding-bottom">
+        <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+          <IonRefresherContent />
+        </IonRefresher>
 
-            <IonHeader collapse="condense">
-              <IonToolbar>
-                <IonTitle size="large">Nearby Places</IonTitle>
-              </IonToolbar>
-            </IonHeader>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Nearby Places</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-            <div className="ion-padding-bottom">
-              {isLoading ? (
-                <div className="ion-text-center ion-padding">
-                  <IonSpinner />
-                </div>
-              ) : (
-                places?.map((place) => (
-                  <IonCard key={place.id}>
-                    {[0].map((photo: any, index: any) => (
+        <div className="ion-padding-bottom">
+          {isLoading ? (
+            <div className="ion-text-center ion-padding">
+              <IonSpinner />
+            </div>
+          ) : (
+            places?.map((place) => (
+              <IonCard key={place.id}>
+                <Swiper
+                  modules={[Pagination]}
+                  pagination={{
+                    clickable: true,
+                  }}
+                >
+                  {place.photos?.map((photo: any, index: any) => (
+                    <SwiperSlide key={index}>
                       <IonImg
-                        key={index}
                         src={getPhotoUrl(photo.name)}
                         alt={`${place.displayName.text} photo ${index + 1}`}
                         style={{
@@ -96,47 +100,31 @@ const Tab1: React.FC = () => {
                           borderRadius: "8px",
                         }}
                       />
-                    ))}
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
 
-                    <IonCardHeader>
-                      <IonCardTitle>{place.displayName.text}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>
-                      {place.editorialSummary && (
-                        <p>{place.editorialSummary.text}</p>
-                      )}
+                <IonCardHeader>
+                  <IonCardTitle>{place.displayName.text}</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>
+                  {place.editorialSummary && (
+                    <p>{place.editorialSummary.text}</p>
+                  )}
 
-                      {place.editorialSummary && (
-                        <p>{place.editorialSummary.text}</p>
-                      )}
+                  {place.editorialSummary && (
+                    <p>{place.editorialSummary.text}</p>
+                  )}
 
-                      {place.editorialSummary && (
-                        <p>{place.editorialSummary.text}</p>
-                      )}
-                    </IonCardContent>
-                  </IonCard>
-                ))
-              )}
-            </div>
-          </IonContent>
-        </IonSegmentContent>
-        <IonSegmentContent id="map">
-          <IonContent>Rendering map</IonContent>
-        </IonSegmentContent>
-      </IonSegmentView>
-
-      <IonFooter>
-        <IonToolbar>
-          <IonSegment value="list">
-            <IonSegmentButton value="list" contentId="list">
-              <IonLabel>List</IonLabel>
-            </IonSegmentButton>
-            <IonSegmentButton value="map" contentId="map">
-              <IonLabel>Map</IonLabel>
-            </IonSegmentButton>
-          </IonSegment>
-        </IonToolbar>
-      </IonFooter>
+                  {place.editorialSummary && (
+                    <p>{place.editorialSummary.text}</p>
+                  )}
+                </IonCardContent>
+              </IonCard>
+            ))
+          )}
+        </div>
+      </IonContent>
     </IonPage>
   );
 };
