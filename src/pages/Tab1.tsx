@@ -95,7 +95,7 @@ const Tab1: React.FC = () => {
                             src={getPhotoUrl(photo.name)}
                             alt={`${place.displayName.text} photo ${index + 1}`}
                             style={{
-                              aspectRatio: "4/4",
+                              aspectRatio: "16/9",
                               width: "100%",
                               height: "100%",
                               objectFit: "cover",
@@ -110,14 +110,6 @@ const Tab1: React.FC = () => {
                       <IonCardTitle>{place.displayName.text}</IonCardTitle>
                     </IonCardHeader>
                     <IonCardContent>
-                      {place.editorialSummary && (
-                        <p>{place.editorialSummary.text}</p>
-                      )}
-
-                      {place.editorialSummary && (
-                        <p>{place.editorialSummary.text}</p>
-                      )}
-
                       {place.editorialSummary && (
                         <p>{place.editorialSummary.text}</p>
                       )}
